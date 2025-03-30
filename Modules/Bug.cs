@@ -1,8 +1,8 @@
 ﻿namespace BugReportBot.Modules
 {
-    public class Bugs
+    public class Bug
     {
-        public static void save(string id, string message)
+        public static void Save(string id, string message)
         {
             if (Program.Config.Logging)
             {

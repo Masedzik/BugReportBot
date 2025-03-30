@@ -20,9 +20,13 @@
 
                 for (int i = 0; i < commandPerm.Length; i++)
                 {
-                    if (userPerm[i] != commandPerm[i] && userPerm[i] != "*")
+                    if (i < userPerm.Length)
                     {
-                        result = false;
+                        if (userPerm[i] != commandPerm[i] && userPerm[i] != "*") { result = false; }
+                    }
+                    else 
+                    {
+                        if (userPerm.Last() != "*") { result = false; }
                     };
                 };
 

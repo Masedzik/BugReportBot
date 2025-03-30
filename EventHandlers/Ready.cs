@@ -1,6 +1,8 @@
-﻿using Discord.Interactions;
+﻿using System.Reflection;
+
+using Discord.Interactions;
 using Discord.WebSocket;
-using System.Reflection;
+
 using BugReportBot.Modules;
 
 namespace BugReportBot.EventHandlers
@@ -29,7 +31,8 @@ namespace BugReportBot.EventHandlers
             await _commands.RegisterCommandsToGuildAsync(Program.Config.Guild);
 
             await _client.SetCustomStatusAsync("Tracking bugs :3");
-            Logs.Log($"Connected as -> [{_client.CurrentUser}]");
+            Log.Info($"Welcome to BugReportingBot v2.0.0 !");
+            Log.Info($"Connected as [{_client.CurrentUser}]");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace BugReportBot.Modules
                 Title = command,
                 Description = response,
                 Color = color,
-                Footer = new EmbedFooterBuilder() { Text = $"BugReportBot | 1.0.0 | - Mased • {DateTime.Now}" }
+                Footer = new EmbedFooterBuilder() { Text = $"BugReportBot | 2.0.0 | - Mased • {DateTime.Now}" }
             }.Build();
 
             return embed;
