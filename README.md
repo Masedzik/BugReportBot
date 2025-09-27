@@ -26,7 +26,7 @@ It fetches issues directly from the GitLab API and shares them in your Discord s
 
 ## ⚙️ Instalation
 
-1. Download the bot. https://github.com/Masedzik/BugReportBot/releases/
+1. Download the bot from the releases.
 2. Unzip the bot.
 3. Copy the bot to your destination directory. 
 4. Change permissions, e.g., (chmod 500).
