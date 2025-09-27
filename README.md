@@ -4,16 +4,16 @@ A Discord bot that automatically tracks and posts new bug reports from the [SCP:
 It fetches issues directly from the GitLab API and shares them in your Discord server for easier monitoring.  
 
 ## ✨ Features  
-- 🔗 Tracks issues from GitLab in real time  
-- 📢 Posts updates to a Discord channel of your choice  
-- ⚙️ Configurable polling interval (`Min`/`Max`)  
-- 🔒 Permission system for starting/stopping tracking  
-- 📝 Optional logging for monitoring bot activity  
+- 🔗 Tracks issues from GitLab in real time.  
+- 📢 Posts updates to a Discord channel of your choice.  
+- ⚙️ Configurable polling interval (`Min`/`Max`).  
+- 🔒 Permission system for starting/stopping tracking.  
+- 📝 Optional logging for monitoring bot activity.  
 
 ## 📦 Requirements
 
-- Discord bot token and application with message and slash command permissions
-- Linux host system (Tested on Ubuntu)
+- Discord bot token and application with message and slash command permissions.
+- Linux host system (Tested on Ubuntu).
 
 ## 📖 Commands  
 
