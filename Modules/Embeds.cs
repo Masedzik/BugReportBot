@@ -1,4 +1,7 @@
-﻿using Discord;
+﻿using System.Reflection;
+using System.Text.RegularExpressions;
+
+using Discord;
 
 namespace BugReportBot.Modules
 {
@@ -11,7 +14,7 @@ namespace BugReportBot.Modules
                 Title = command,
                 Description = response,
                 Color = color,
-                Footer = new EmbedFooterBuilder() { Text = $"BugReportBot | 1.0.0 | - Mased • {DateTime.Now}" }
+                Footer = new EmbedFooterBuilder() { Text = $"BugReportBot | {Regex.Replace(Assembly.GetExecutingAssembly().GetName().Version.ToString(), @".[0-9]$", "")} | - Mased • {DateTime.Now}" }
             }.Build();
 
             return embed;

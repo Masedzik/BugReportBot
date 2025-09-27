@@ -1,8 +1,10 @@
-﻿using Discord;
-using Discord.WebSocket;
-using System.Net;
-using BugReportBot.Modules;
+﻿using System.Net;
 using System.Text.RegularExpressions;
+
+using Discord;
+using Discord.WebSocket;
+
+using BugReportBot.Modules;
 
 namespace BugReportBot.EventHandlers
 {
@@ -19,39 +21,31 @@ namespace BugReportBot.EventHandlers
             Program.Interval.Elapsed += OnTimedEvent; 
         }
 
-        private async void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        private async void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs ev)
         {
             Random random = new Random();
-            float rand = random.Next(Program.Config.Min * 60, Program.Config.Max * 60);
+            float rand = random.Next((Program.Config.Min < 60 ? 60 : Program.Config.Min), Program.Config.Max);
             Program.Interval.Interval = rand * 1000;
 
-            Logs.Log($"Next check in {Math.Floor(rand / 60)}:{rand % 60}");
+            Log.Info($"Next check in {Math.Floor(rand / 60)}:{rand % 60}");
 
             using (WebClient client = new WebClient())
             {
                 try
                 {
-                    if (Program.Id != null)
-                    {
-                        string content = await client.DownloadStringTaskAsync($"{Program.Config.Link}{Program.Id}");
+                    ITextChannel channel = _client.GetChannel(Program.Config.Channel) as ITextChannel;
 
-                        IMessageChannel channel = _client.GetChannel(Program.Config.Channel) as IMessageChannel;
-                        await channel.SendMessageAsync(text: $"{Program.Config.Link}{Program.Id}");
+                    string content = await client.DownloadStringTaskAsync($"{Program.Config.TrackLink}{Program.Id}");
+                    if (Regex.Match(content, @"<pre>{""message"":""404 Not found""}</pre>").Success) return;
 
-                        string title = Regex.Match(content, @"<div class=""title-container"">\s<h1(.)*</h1>\s</div>").Value;
-                        string body = Regex.Match(content, @"<div class=""description"">\s<div class=""md"">(.)*\s</div>").Value;
+                    await channel.SendMessageAsync(text: $"{Program.Config.ShortLink}{Program.Id}");
+                    Bug.Save(Program.Id.ToString(), content);
 
-                        if (title != null && body != null) 
-                        {
-                            Bugs.save(Program.Id.ToString(),$"{title}\n\n{body}");
-                        };
-
-                        Program.Id++;
-                    };
+                    Program.Id++;
                 }
                 catch (Exception ex)
                 {
-                    Logs.Log(ex.Message);
+                    Log.Error(ex.Message);
                 };
             };
         }

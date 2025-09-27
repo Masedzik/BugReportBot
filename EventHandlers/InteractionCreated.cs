@@ -1,7 +1,8 @@
-using BugReportBot.Modules;
 using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
+
+using BugReportBot.Modules;
 
 namespace BugReportBot.EventHandlers
 {
@@ -43,7 +44,7 @@ namespace BugReportBot.EventHandlers
             }
             catch (Exception ex)
             {
-                Logs.Log(ex.Message);
+                Log.Error(ex.Message);
             };
         }
     }

@@ -1,6 +1,9 @@
-﻿using Discord.Interactions;
+﻿using System.Reflection;
+using System.Text.RegularExpressions;
+
+using Discord.Interactions;
 using Discord.WebSocket;
-using System.Reflection;
+
 using BugReportBot.Modules;
 
 namespace BugReportBot.EventHandlers
@@ -28,8 +31,9 @@ namespace BugReportBot.EventHandlers
             await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
             await _commands.RegisterCommandsToGuildAsync(Program.Config.Guild);
 
-            await _client.SetCustomStatusAsync("Tracking bugs :3");
-            Logs.Log($"Connected as -> [{_client.CurrentUser}]");
+            await _client.SetCustomStatusAsync("Tracking: INACTIVE");
+            Log.Info($"Welcome to BugReportingBot v{Regex.Replace(Assembly.GetExecutingAssembly().GetName().Version.ToString(), @".[0-9]$", "")} !");
+            Log.Info($"Connected as [{_client.CurrentUser}]");
         }
     }
 }

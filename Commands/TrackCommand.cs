@@ -1,8 +1,12 @@
-﻿using Discord;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Text.RegularExpressions;
+
+using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
+
+using BugReportBot.EventHandlers;
 using BugReportBot.Modules;
-using System.Text.RegularExpressions;
 
 namespace BugReportBot.Commands
 {
@@ -10,9 +14,12 @@ namespace BugReportBot.Commands
     public class TrackCommand : InteractionModuleBase<SocketInteractionContext>
     {
         private readonly DiscordSocketClient _client;
-        public TrackCommand(DiscordSocketClient client)
+        private IServiceProvider _services;
+
+        public TrackCommand(DiscordSocketClient client, IServiceProvider services)
         {
             _client = client;
+            _services = services;
         }
 
         [SlashCommand("start", "Starts tracking bugs.")]
@@ -24,16 +31,22 @@ namespace BugReportBot.Commands
             {
                 response = "Bug tracking is already active.";
                 await RespondAsync(embed: await Embeds.CreateEmbed("/track start", response, Color.Red), ephemeral: true);
-                Logs.Log(response);
+                Log.Info(response);
                 return;
             };
 
+            Program.Interval = new System.Timers.Timer();
+            await _services.GetRequiredService<TimedEvent>().InitializeAsync();
+
             Program.Id = id;
             Program.Interval.Enabled = true;
+
             await _client.SetCustomStatusAsync("Tracking: ACTIVE");
+
             response = "Bug tracking activated.";
             await RespondAsync(embed: await Embeds.CreateEmbed("/track start", response, Color.Green), ephemeral:true);
-            Logs.Log(response);
+            Log.Info(response);
+            return;
         }
 
         [SlashCommand("stop", "Stops tracking bugs.")]
@@ -45,16 +58,19 @@ namespace BugReportBot.Commands
             {
                 response = "Bug tracking is already inactive.";
                 await RespondAsync(embed: await Embeds.CreateEmbed("/track stop", response, Color.Red), ephemeral: true);
-                Logs.Log(response);
+                Log.Info(response);
                 return;
             };
 
             Program.Id = null;
             Program.Interval.Enabled = false;
+
             await _client.SetCustomStatusAsync("Tracking: INACTIVE");
+
             response = "Bug tracking inactivated.";
             await RespondAsync(embed: await Embeds.CreateEmbed("/track stop", response, Color.Green), ephemeral: true);
-            Logs.Log(response);
+            Log.Info(response);
+            return;
         }
     }
 }
