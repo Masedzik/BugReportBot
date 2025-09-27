@@ -42,7 +42,7 @@ Edit a `config.json` file in the bot’s root directory with the following struc
 | `Token`      | String  | Your Discord bot token.                                                     |
 | `Guild`      | Ulong   | The Discord server (guild) ID where the bot will run.                       |
 | `Channel`    | Ulong   | The Discord channel ID where issue updates will be posted.                  |
-| `Permissions`| Dictionary  | Maps users or roles to permissions (`track.start`, `track.stop`, `*.*`).    |
+| `Permissions`| Dictionary  | Maps users to permissions (`track.start`, `track.stop`, `*.*`).    |
 | `DiscordId`  | String  | The permissions in the array will be assigned to provided Id.               |
 | `TrackLink`  | String  | GitLab API endpoint for fetching SCP:SL bug reports.                        |
 | `ShortLink`  | String  | Short issue link used when posting in Discord.                              |
