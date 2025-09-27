@@ -15,6 +15,15 @@ It fetches issues directly from the GitLab API and shares them in your Discord s
 - Discord bot token and application with message and slash command permissions
 - Linux host system (Tested on Ubuntu)
 
+## 📖 Commands  
+
+- In case the report is deleted before the bot detects it, you have to stop tracking and start it again with the correct report ID.
+
+| Command       | Description              |
+|---------------|--------------------------|
+| `/track start <id>` | Starts tracking issues from the SCP:SL Bug Reporting board and posts updates in the configured Discord channel. |
+| `/track stop`  | Stops tracking issues. No new updates will be posted until tracking is started again. |
+
 ## ⚙️ Instalation
 
 1. Download the bot. https://github.com/Masedzik/BugReportBot/releases/
