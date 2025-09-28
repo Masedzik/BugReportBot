@@ -9,7 +9,7 @@
         public Dictionary<string, List<string>> Permissions { get; set; } = new Dictionary<string, List<string>>();
 
         public string TrackLink { get; set; }
-        public string ShortLink { get; set; }
+        public string DiscordMessage { get; set; }
         public short Min {  get; set; }
         public short Max {  get; set; }
 
@@ -35,11 +35,11 @@
             },
 
             TrackLink = "https://git.scpslgame.com/api/v4/projects/75/issues/",
-            ShortLink = "https://git.scpslgame.com/northwood-qa/scpsl-bug-reporting/-/issues/",
+            DiscordMessage = "<@&0> \n New issue appeared! \n https://git.scpslgame.com/northwood-qa/scpsl-bug-reporting/-/issues/{issueid}",
             Min = 60,
             Max = 60,
 
-            Logging = true
+            Logging = false
         };
     }
 }

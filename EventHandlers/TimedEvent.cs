@@ -38,7 +38,7 @@ namespace BugReportBot.EventHandlers
                     string content = await client.DownloadStringTaskAsync($"{Program.Config.TrackLink}{Program.Id}");
                     if (Regex.Match(content, @"<pre>{""message"":""404 Not found""}</pre>").Success) return;
 
-                    await channel.SendMessageAsync(text: $"{Program.Config.ShortLink}{Program.Id}");
+                    await channel.SendMessageAsync(text: $"{Program.Config.DiscordMessage}".Replace("{issueid}", Program.Id.ToString()));
                     Bug.Save(Program.Id.ToString(), content);
 
                     Program.Id++;
