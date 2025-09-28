@@ -45,10 +45,10 @@ Edit a `config.json` file in the bot’s root directory with the following struc
 | `Permissions`| Dictionary  | Maps users to permissions (`track.start`, `track.stop`, `*.*`).    |
 | `DiscordId`  | String  | The permissions in the array will be assigned to provided Id.               |
 | `TrackLink`  | String  | GitLab API endpoint for fetching SCP:SL bug reports.                        |
-| `ShortLink`  | String  | Short issue link used when posting in Discord.                              |
+| `DiscordMessage`  | String  | Short message used when posting in Discord.                              |
 | `Min`        | Short  | Minimum polling interval in seconds (Min 60s).                              |
 | `Max`        | Short  | Maximum polling interval in seconds (Max 32767s).                           |
-| `Logging`    | Boolean | Enables (`true`) or disables (`false`) logging of bot activity.             |
+| `Logging`    | Boolean | Enables (`true`) or disables (`false`) logging of bugs.             |
 
 ## ⚙️ Example
 
@@ -69,7 +69,7 @@ Your `config.json` might look like this (0 - Replace it with correct value):
     ]
   },
   "TrackLink": "https://git.scpslgame.com/api/v4/projects/75/issues/",
-  "ShortLink": "https://git.scpslgame.com/northwood-qa/scpsl-bug-reporting/-/issues/",
+  "DiscordMessage": "<@&0> \n New issue appeared! \n https://git.scpslgame.com/northwood-qa/scpsl-bug-reporting/-/issues/{issueid}",
   "Min": 60,
   "Max": 60,
   "Logging": true
