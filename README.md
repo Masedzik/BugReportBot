@@ -56,9 +56,9 @@ Your `config.json` might look like this (0 - Replace it with correct value):
 
 ```json
 {
-  "token": "<YOUR_DISCORD_BOT_TOKEN>",
-  "guild": 0,
-  "channel": 0,
+  "Token": "<YOUR_DISCORD_BOT_TOKEN>",
+  "Guild": 0,
+  "Channel": 0,
   "Permissions": {
     "0": [
       "track.start",
